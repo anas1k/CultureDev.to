@@ -1,12 +1,14 @@
 <?php
-include('../include/require.php');
+include('../controller/users.php');
 $path = "Home";
-if (!isset($_SESSION['fullname'])) {
+/* if (!isset($_SESSION['fullname'])) {
     $_SESSION['icon'] = "error";
     $_SESSION['message'] = "Veuillez saisir votre email et mot de passe";
     header('Location: ../core/login.php');
     die;
-}
+} */
+// var_dump($_SESSION['email']);
+// die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +28,7 @@ if (!isset($_SESSION['fullname'])) {
                     <div class="card">
                         <h5 class="card-header">Users</h5>
                         <div class="card-body">
-                            <h5 class="card-title text-center"><?= $UsersCount ?></h5>
+                            <h5 class="card-title text-center"></h5>
                             <p class="card-text text-success"></p>
                         </div>
                     </div>
@@ -35,7 +37,7 @@ if (!isset($_SESSION['fullname'])) {
                     <div class="card">
                         <h5 class="card-header">Products</h5>
                         <div class="card-body">
-                            <h5 class="card-title text-center"><?= $ProductsCount; ?></h5>
+                            <h5 class="card-title text-center"></h5>
                             <p class="card-text text-success"></p>
                         </div>
                     </div>
@@ -44,7 +46,7 @@ if (!isset($_SESSION['fullname'])) {
                     <div class="card">
                         <h5 class="card-header">Stock Quantity</h5>
                         <div class="card-body">
-                            <h5 class="card-title text-center"><?= $QuantityCount; ?></h5>
+                            <h5 class="card-title text-center"></h5>
                             <p class="card-text text-success"></p>
                         </div>
                     </div>
@@ -53,7 +55,7 @@ if (!isset($_SESSION['fullname'])) {
                     <div class="card">
                         <h5 class="card-header">Stock Worth</h5>
                         <div class="card-body">
-                            <h5 class="card-title text-center"><?= $StockNet . ' USD$'; ?></h5>
+                            <h5 class="card-title text-center"></h5>
                             <p class="card-text text-success"></p>
                         </div>
                     </div>

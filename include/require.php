@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+/* session_start();
 
 include('../controller/products.php');
 include('../controller/category.php');
@@ -11,7 +11,7 @@ $AllProducts = GetProducts();
 
 $FourProducts = FourProducts();
 
-$AllCategories = GetCategory();
+$AllCategories = GetCategory(); */
 
 // $ProductsCount = CountProducts()->num_rows;
 
@@ -22,7 +22,7 @@ $AllCategories = GetCategory();
 // $QuantityCount = $res['total'];
 
 
-$StockNet = 0;
+// $StockNet = 0;
 // foreach ($AllProducts as $product) {
 //     $StockNet += (float)$product['price'] * (float)$product['quantity'];
 // }
@@ -31,7 +31,7 @@ $StockNet = 0;
 
 
 // add product routing
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+/* if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_REQUEST['addProductForm'])) {
         extract($_POST);
         $idUser = $_SESSION['id'];
@@ -93,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $_REQUEST['deleteProductForm'];
         $result = DeleteProduct($id);
         if ($result == 1) {
-            /* $_SESSION['icon'] = "error";
-            $_SESSION['message'] = "Produit supprimé avec succès"; */
+            // $_SESSION['icon'] = "error";
+            // $_SESSION['message'] = "Produit supprimé avec succès";
             die;
         }
     }
@@ -219,3 +219,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+ */

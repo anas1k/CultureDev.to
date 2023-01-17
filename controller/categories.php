@@ -1,8 +1,16 @@
 <?php
 
-require_once('../controller/database.php');
+require_once('../model/crud.php');
+class CategoryController extends Crud
+{
 
-function GetCategory(){
+    public function GetCategory()
+    {
+        $res = $this->select('category', '*');
+        return $res;
+    }
+}
+/* function GetCategory(){
     
     $sql = "SELECT * FROM category";
     $result = connect() -> query($sql);
@@ -37,8 +45,8 @@ function DeleteCategory($id){
     $sql = "DELETE FROM category WHERE id = '$id'";
     $result = connect() -> query($sql);
 
-    /* $_SESSION['icon'] = "error";
-    $_SESSION['message'] = "Category supprimé avec succès"; */
+    $_SESSION['icon'] = "error";
+    $_SESSION['message'] = "Category supprimé avec succès";
 
     return 1;
-}
+} */

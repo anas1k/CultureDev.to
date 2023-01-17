@@ -1,6 +1,8 @@
 <?php
-include('../include/require.php');
+require_once('../controller/users.php');
 $path = "Log In";
+$users = new Users();
+$users->LoginUser();
 ?>
 
 <!DOCTYPE html>
