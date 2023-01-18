@@ -226,10 +226,10 @@ function deleteCategory(id) {
             Swal.fire({ background: '#1e1e2d', color: '#F0F6FC', title: 'Deleted!', text: 'Your category has been deleted successfully. ', icon: 'error' });
             // using ajax to send data without refresh
             $.ajax({
-                url: '../include/require.php',
-                type: 'POST',
-                data: { deleteCategoryForm: id },
-                dataType: 'html',
+                url: '../core/allcategories.php',
+                type: 'GET',
+                data: { DeleteCategory: id },
+                dataType: 'HTML',
                 success: function () {
                     // removing element from dom
                     document.querySelector(`#Category${id}`).remove();

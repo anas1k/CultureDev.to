@@ -1,9 +1,8 @@
 <?php
 
-session_start();
 require_once('../model/crud.php');
 
-class Users extends Crud
+class UsersController extends Crud
 {
 
     public function AddUser()
@@ -35,10 +34,9 @@ class Users extends Crud
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['loginUser'])) {
                 extract($_POST);
-                // print_r($_POST);
-                $sql = "email = '$email'";
-                $result = parent::select('admin', '*', $sql);
-
+                $sql = "WHERE email = '$email'";
+                $res = parent::select('admin', '*', $sql);
+                $result = $res[0];
                 if ($result != null) {
                     if (password_verify($password, $result['password']) == true) {
                         $_SESSION['id'] = $result['id_admin'];
@@ -56,38 +54,10 @@ class Users extends Crud
                 }
             }
         }
-
-        // $row = $result->fetch_assoc();
-        // if (!isset($row['email'])) {
-        //     $_SESSION['icon'] = "error";
-        //     $_SESSION['message'] = "Email ou mot de passe incorrect";
-        //     header('Location: ../core/login.php'); //refresh page
-        //     die;
-        // } else {
-        //     return $row;
-        // }
+    }
+    public function GetUsers()
+    {
+        $res = $this->select('admin', '*', null);
+        return $res;
     }
 }
-
-/* function GetUsers()
-{
-
-    $sql = "SELECT * FROM users";
-    $result = connect()->query($sql);
-
-    return $result;
-}
-
-function AddUser($name, $email, $password, $role)
-{
-
-    $sql = "INSERT INTO admin (fullname, email, password, role) VALUES ('$name', '$email', '$password', '$role')";
-    connect()->query($sql);
-
-    $_SESSION['icon'] = "success";
-    $_SESSION['message'] = "Utilisateur ajouté avec succès";
-
-    return 1;
-}
-
- */
