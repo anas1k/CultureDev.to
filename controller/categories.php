@@ -6,7 +6,7 @@ class CategoryController extends Crud
 
     public function GetCategory()
     {
-        $res = $this->select('category', '*', null);
+        $res = $this->select('category', '*');
         return $res;
     }
 
@@ -60,9 +60,8 @@ class CategoryController extends Crud
     public function DeleteCategory()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            if (isset($_REQUEST['deleteCategory'])) {
+            if (isset($_REQUEST['DeleteCategory'])) {
                 print_r($_REQUEST['DeleteCategory']);
-                die;
                 $id = $_REQUEST['DeleteCategory'];
                 $where = "WHERE id_category = $id";
                 $result = parent::delete('category', $where);

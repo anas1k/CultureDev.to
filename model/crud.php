@@ -26,7 +26,7 @@ class Crud extends Connection
 
         $sql = "UPDATE  $table SET " . implode(',', $args);
 
-        $sql .= " WHERE $where ;";
+        $sql .= " WHERE $where ";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([]);
 
@@ -42,7 +42,7 @@ class Crud extends Connection
         return 1;
     }
 
-    protected function select($table, $rows, $where)
+    protected function select($table, $rows, $where = null)
     {
         if ($where != null) {
             $sql = "SELECT $rows FROM $table $where";

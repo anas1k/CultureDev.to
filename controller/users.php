@@ -34,8 +34,7 @@ class UsersController extends Crud
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['loginUser'])) {
                 extract($_POST);
-                // print_r($_POST);
-                $sql = "email = '$email'";
+                $sql = "WHERE email = '$email'";
                 $res = parent::select('admin', '*', $sql);
                 $result = $res[0];
                 if ($result != null) {
