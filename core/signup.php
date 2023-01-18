@@ -1,8 +1,8 @@
 <?php
 require_once('../controller/users.php');
 $path = "Sign up";
-$users = new Users();
-$users->AddUser();
+$Users = new UsersController();
+$Users->AddUser();
 ?>
 
 <!DOCTYPE html>

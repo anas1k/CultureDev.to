@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 16, 2023 at 08:01 PM
+-- Generation Time: Jan 18, 2023 at 03:56 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -40,7 +40,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `fullname`, `email`, `password`, `super`) VALUES
-(1, 'eddi pacer', 'eddi@pacer.ep', 'pacerep', 0);
+(1, 'eddi pacer', 'eddi@pacer.ep', 'pacerep', 0),
+(17, 'marky mark', 'marc@marc.mc', '$2y$10$bffKzJddICDRQxhP8PLyCOMVb08rBejxB/SHk1TRWN94gT5J/W4su', 0),
+(18, 'axl axel', 'axel@axel.ax', '$2y$10$iTGmVdV94ZKXWHh14XhSke6agNTwPu5MyGRC8Awh8izmQuDfcaO4G', 0),
+(19, 'davie dave', 'dave@dave.dv', '$2y$10$yA8GFrjy/pYU8LS97YjZKOWFAckBvTamHEuKNk7/29fQ/EmjaGuCe', 0);
 
 -- --------------------------------------------------------
 
@@ -68,6 +71,14 @@ CREATE TABLE `category` (
   `id_category` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id_category`, `name`) VALUES
+(1, 'Front-Ende'),
+(2, 'Back-End');
 
 --
 -- Indexes for dumped tables
@@ -101,7 +112,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `article`
@@ -113,7 +124,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

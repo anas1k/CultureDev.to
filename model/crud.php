@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 include_once('../model/database.php');
 
 class Crud extends Connection
@@ -16,7 +18,7 @@ class Crud extends Connection
         return 1;
     }
 
-    protected function update($table, $para, $id)
+    protected function update($table, $para, $where)
     {
         foreach ($para as $key => $value) {
             $args[] = "$key = '$value'";
@@ -24,17 +26,18 @@ class Crud extends Connection
 
         $sql = "UPDATE  $table SET " . implode(',', $args);
 
-        $sql .= " WHERE id=$id ;";
-        $this->connect()->prepare($sql);
+        $sql .= " WHERE $where ;";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([]);
 
         return 1;
     }
 
-    protected function delete($table, $id)
+    protected function delete($table, $where = null)
     {
-        $sql = "DELETE FROM $table";
-        $sql .= " WHERE $id ";
-        $this->connect()->prepare($sql);
+        $sql = "DELETE FROM $table $where ";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([]);
 
         return 1;
     }
@@ -42,13 +45,13 @@ class Crud extends Connection
     protected function select($table, $rows, $where)
     {
         if ($where != null) {
-            $sql = "SELECT $rows FROM $table WHERE $where";
+            $sql = "SELECT $rows FROM $table $where";
         } else {
             $sql = "SELECT $rows FROM $table";
         }
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([]);
-        $result = $stmt->fetch();
+        $result = $stmt->fetchAll();
         return $result;
     }
 }

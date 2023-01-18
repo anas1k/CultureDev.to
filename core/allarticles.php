@@ -1,5 +1,5 @@
 <?php
-include('../include/require.php');
+include('../controller/users.php');
 $path = "Articles";
 if (!isset($_SESSION['fullname'])) {
     $_SESSION['icon'] = "error";
