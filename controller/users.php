@@ -39,7 +39,7 @@ class UsersController extends Crud
                 $result = $res[0];
                 if ($result != null) {
                     if (password_verify($password, $result['password']) == true) {
-                        $_SESSION['id'] = $result['id_admin'];
+                        $_SESSION['id_admin'] = $result['id_admin'];
                         $_SESSION['fullname'] = $result['fullname'];
                         $_SESSION['email'] = $result['email'];
 
@@ -57,7 +57,7 @@ class UsersController extends Crud
     }
     public function GetUsers()
     {
-        $res = $this->select('admin', '*', null);
+        $res = $this->select('admin', '*');
         return $res;
     }
 }

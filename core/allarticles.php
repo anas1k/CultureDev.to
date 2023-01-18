@@ -1,6 +1,7 @@
 <?php
 include('../controller/articles.php');
 include('../controller/categories.php');
+include('../controller/users.php');
 $path = "Articles";
 
 if (!isset($_SESSION['fullname'])) {
@@ -19,6 +20,8 @@ $Artcile->DeleteArticle();
 $Category = new CategoryController();
 $AllCategories = $Category->GetCategory();
 
+$User = new UsersController();
+$AllUsers = $User->GetUsers();
 
 
 ?>
@@ -77,12 +80,21 @@ $AllCategories = $Category->GetCategory();
                                                 <td id="ArticleSubject<?= $article['id_article']; ?>"><?= $article['subject']; ?></td>
                                                 <td id="ArticleCategory<?= $article['id_article']; ?>">
                                                     <?php foreach ($AllCategories as $category) {
-                                                        $article['id_category'] == $category['id_category'] ? $category['name'] : 'Category not found';
+                                                        if ($article['id_category'] == $category['id_category']) {
+                                                            echo $category['name'];
+                                                        } else {
+                                                            echo 'Category not found';
+                                                        }
                                                     }  ?></td>
-                                                <td id="ArticleQuantity<?= $article['id_article']; ?>"><?= $article['quantity']; ?></td>
-                                                <td id="ArticleDescription<?= $article['id_article']; ?>"><?= $article['description']; ?></td>
+                                                <td id="ArticleAdmin<?= $article['id_article']; ?>">
+                                                    <?php foreach ($AllUsers as $user) {
+                                                        if ($article['id_admin'] == $user['id_admin']) {
+                                                            echo $user['fullname'];
+                                                        }
+                                                    }  ?></td>
+                                                <td class="w-25" id="ArticleDescription<?= $article['id_article']; ?>"><?= $article['description']; ?></td>
                                                 <td>
-                                                    <a href="#" onclick="GetArticle('<?= $article['id_article']; ?>','<?= $article['idCategory']; ?>')" class="btn btn-sm btn-warning">Edit</a>
+                                                    <a href="#" onclick="GetArticle('<?= $article['id_article']; ?>','<?= $article['id_category']; ?>')" class="btn btn-sm btn-warning">Edit</a>
                                                     <a href="#" onclick="DeleteArticle('<?= $article['id_article']; ?>')" class="btn btn-sm btn-danger">Delete</a>
                                                 </td>
                                             </tr>
@@ -108,16 +120,21 @@ $AllCategories = $Category->GetCategory();
                         <div class="modal-body pt-0 pb-1">
                             <form id="form" method="POST" enctype="multipart/form-data">
                                 <div class="mb-0">
-                                    <label class="col-form-label">Name</label>
-                                    <input type="text" class="form-control" id="NameInput" name="name" />
-                                    <div id="ValidateName"></div>
+                                    <label class="col-form-label">Title</label>
+                                    <input type="text" class="form-control" id="TitleInput" name="title" />
+                                    <div id="ValidateTitle"></div>
+                                </div>
+                                <div class="mb-0">
+                                    <label class="col-form-label">Subject</label>
+                                    <input type="text" class="form-control" id="SubjectInput" name="subject" />
+                                    <div id="ValidateSubject"></div>
                                 </div>
                                 <div class="mb-0">
                                     <label for="articleCategory" class="col-form-label">Category</label>
-                                    <select class="form-select" id="CategoryInput" name="idCategory" required>
+                                    <select class="form-select" id="CategoryInput" name="id_category" required>
                                         <option value selected disabled>Please select</option>
                                         <?php foreach ($AllCategories as $category) {
-                                            echo '<option value="' . $category['id'] . '">' . $category['name'] . '</option>';
+                                            echo '<option value="' . $category['id_category'] . '">' . $category['name'] . '</option>';
                                         } ?>
 
                                     </select>
@@ -129,16 +146,6 @@ $AllCategories = $Category->GetCategory();
                                         <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100" type="file" name="picture" />
                                         <div id="ValidatePicture" class="text-success"></div>
                                     </div>
-                                </div>
-                                <div class="mb-0">
-                                    <label class="col-form-label">Price $(USD)</label>
-                                    <input type="number" step=0.01 class="form-control" id="PriceInput" name="price" />
-                                    <div id="ValidatePrice"></div>
-                                </div>
-                                <div class="mb-0">
-                                    <label class="col-form-label">Quantity</label>
-                                    <input type="number" class="form-control" id="QuantityInput" name="quantity" />
-                                    <div id="ValidateQuantity"></div>
                                 </div>
                                 <div class="mb-0">
                                     <label class="col-form-label">Description</label>

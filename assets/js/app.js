@@ -4,7 +4,7 @@
  */
 
 // event listener for saveValidation
-$('#saveProduct').click(function (e) {
+$('#saveArticle').click(function (e) {
     if (document.getElementById('NameInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('NameInput').value)) {
         e.preventDefault();
 
@@ -40,7 +40,7 @@ $('#saveProduct').click(function (e) {
 });
 
 // event listener for updateValidation
-$('#updateProduct').click(function (ee) {
+$('#updateArticle').click(function (ee) {
     if (document.getElementById('NameInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('NameInput').value)) {
         ee.preventDefault();
 
@@ -97,16 +97,16 @@ $('#LoginUser').click(function (e) {
     }
 });
 
-function createProduct() {
-    // initialiser Product form
+function createArticle() {
+    // initialiser Article form
     document.getElementById('form').reset();
 
     // Afficher le boutton save
-    document.getElementById('saveProduct').style.display = 'block';
-    document.getElementById('editProduct').style.display = 'none';
+    document.getElementById('saveArticle').style.display = 'block';
+    document.getElementById('editArticle').style.display = 'none';
 
     // Ouvrir modal form
-    $('#productModal').modal('show');
+    $('#articleModal').modal('show');
 
     // Initialise Validation
     document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
@@ -121,15 +121,15 @@ function createProduct() {
     document.getElementById('PreviewFileField').setAttribute('style', 'display:none;');
 }
 
-function GetProduct(id, idCategory) {
-    // initialise Product form
+function GetArticle(id, idCategory) {
+    // initialise Article form
     document.getElementById('form').reset();
 
-    document.getElementById('saveProduct').style.display = 'none';
-    document.getElementById('editProduct').style.display = 'block';
+    document.getElementById('saveArticle').style.display = 'none';
+    document.getElementById('editArticle').style.display = 'block';
 
-    // Initialise Product form
-    $('#productModal').modal('show');
+    // Initialise Article form
+    $('#articleModal').modal('show');
 
     // Initialise Validation
     document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
@@ -140,20 +140,20 @@ function GetProduct(id, idCategory) {
 
     /* console.log(id); */
 
-    document.getElementById('NameInput').value = document.querySelector(`#ProductName${id}`).innerText;
+    document.getElementById('NameInput').value = document.querySelector(`#ArticleName${id}`).innerText;
 
     document.getElementById('CategoryInput').value = idCategory;
 
-    document.getElementById('DescriptionInput').value = document.querySelector(`#ProductDescription${id}`).innerText;
+    document.getElementById('DescriptionInput').value = document.querySelector(`#ArticleDescription${id}`).innerText;
 
-    document.getElementById('PriceInput').value = document.querySelector(`#ProductPrice${id}`).innerText;
+    document.getElementById('PriceInput').value = document.querySelector(`#ArticlePrice${id}`).innerText;
 
-    document.getElementById('QuantityInput').value = document.querySelector(`#ProductQuantity${id}`).innerText;
+    document.getElementById('QuantityInput').value = document.querySelector(`#ArticleQuantity${id}`).innerText;
 
     document.getElementById('IdInput').value = id;
 
     // getting the image path from the image tag and setting it to the input field and previewing it
-    let picTitle = document.querySelector(`#ProductPicture${id}`).getAttribute('src');
+    let picTitle = document.querySelector(`#ArticlePicture${id}`).getAttribute('src');
     /* console.log(picTitle); */
     document.getElementById('PictureInput').setAttribute('src', picTitle);
     document.getElementById('PictureFileField').setAttribute('class', 'dropify-wrapper has-preview');
@@ -164,13 +164,13 @@ function GetProduct(id, idCategory) {
     document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:green;font-size:10px;');
 }
 
-function DeleteProduct(id) {
+function DeleteArticle(id) {
     // Delete action confirmation using SweetAlert2 combined with Ajax
     // SweetAlert2 pop up
     Swal.fire({
         background: '#1e1e2d',
         color: '#F0F6FC',
-        title: 'Are you sure you want to delete this product?',
+        title: 'Are you sure you want to delete this article?',
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
@@ -180,16 +180,16 @@ function DeleteProduct(id) {
     }).then((result) => {
         // after confirmation is succesfull
         if (result.isConfirmed) {
-            Swal.fire({ background: '#1e1e2d', color: '#F0F6FC', title: 'Deleted!', text: 'Your product has been deleted successfully. ', icon: 'error' });
+            Swal.fire({ background: '#1e1e2d', color: '#F0F6FC', title: 'Deleted!', text: 'Your article has been deleted successfully. ', icon: 'error' });
             // using ajax to send data without refresh
             $.ajax({
                 url: '../include/require.php',
                 type: 'POST',
-                data: { deleteProductForm: id },
+                data: { deleteArticleForm: id },
                 dataType: 'html',
                 success: function () {
                     // removing element from dom
-                    document.querySelector(`#Product${id}`).remove();
+                    document.querySelector(`#Article${id}`).remove();
                 },
             });
         }
