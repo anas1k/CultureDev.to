@@ -1,11 +1,11 @@
-<footer class="d-flex justify-content-end" >
-    <span <?=$path ='Log In' ? 'style="display: none;"' : '' ?> >Copyright © 2022 BY AK</span>
+<footer class="d-flex justify-content-end">
+    <span <?= $path = 'Log In' ? 'style="display: none;"' : '' ?>>Copyright © 2022 BY AK</span>
 </footer>
-<script src="../assets/js/app.js"></script>
+<script defer src="../assets/js/app.js"></script>
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script>
-
-    <?php if (isset($_SESSION['message'])) { 
-        ?>
+    <?php if (isset($_SESSION['message'])) {
+    ?>
         const Toast = Swal.mixin({
             background: '#1e1e2d',
             color: '#F0F6FC',
@@ -22,19 +22,21 @@
         })
 
         Toast.fire({
-            icon: '<?=$_SESSION['icon']; ?>',
-            title: '<?=$_SESSION['message']; ?>'
+            icon: '<?= $_SESSION['icon']; ?>',
+            title: '<?= $_SESSION['message']; ?>'
         })
     <?php
-            unset($_SESSION['icon']);
-            unset($_SESSION['message']);
-            
-        } ?>
-                
+        unset($_SESSION['icon']);
+        unset($_SESSION['message']);
+    } ?>
 </script>
-
 <script>
-      $(document).ready(function () {
+    $(document).ready(function() {
+        $('#Table').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function() {
         // Basic
         $('.dropify').dropify({
             tpl: {
@@ -52,21 +54,21 @@
         // Used events
         var drEvent = $('#input-file-events').dropify();
 
-        drEvent.on('dropify.beforeClear', function (event, element) {
+        drEvent.on('dropify.beforeClear', function(event, element) {
             return confirm('Do you really want to delete "' + element.file.name + '" ?');
         });
 
-        drEvent.on('dropify.afterClear', function (event, element) {
+        drEvent.on('dropify.afterClear', function(event, element) {
             alert('File deleted');
         });
 
-        drEvent.on('dropify.errors', function (event, element) {
+        drEvent.on('dropify.errors', function(event, element) {
             console.log('Has Errors');
         });
 
         var drDestroy = $('#input-file-to-destroy').dropify();
         drDestroy = drDestroy.data('dropify');
-        $('#toggleDropify').on('click', function (e) {
+        $('#toggleDropify').on('click', function(e) {
             e.preventDefault();
             if (drDestroy.isDropified()) {
                 drDestroy.destroy();
@@ -74,5 +76,5 @@
                 drDestroy.init();
             }
         });
-      });
-    </script>
+    });
+</script>

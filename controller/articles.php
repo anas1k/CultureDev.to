@@ -13,7 +13,7 @@ class ArticlesController extends Crud
 
     public function FourArticles()
     {
-        $res = $this->select('article', '*', 'ORDER BY id_article desc limit 4');
+        $res = $this->select('article', '*', 'ORDER BY id_article DESC limit 4');
         return $res;
     }
 
@@ -41,7 +41,7 @@ class ArticlesController extends Crud
                         $allowed = array('jpg', 'jpeg', 'png', 'jfif');
 
                         if (in_array($fileActualExt, $allowed)) {
-                            if ($fileError === 0) {
+                            if ($fileError == 0) {
                                 if ($fileSize < 1728640) {  // 1MB max file size
                                     $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique name using time and date and name of 'picture'
                                     $fileDestination = "../assets/img/uploads/" . $fileNameNew;
@@ -93,7 +93,7 @@ class ArticlesController extends Crud
                 $para = [
                     'title' => $title,
                     'id_category' => $id_category,
-                    'id_admin' => $_SESSION['id_admin'],
+                    'id_admin' => $id_admin,
                     'picture' => $picture,
                     'subject' => $subject,
                     'description' => $description
@@ -113,9 +113,9 @@ class ArticlesController extends Crud
     public function DeleteArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_REQUEST['deleteArticleForm'])) {
-                extract($_POST);
-                $where = "id_article = '$id'";
+            if (isset($_REQUEST['deleteArticle'])) {
+                $id = $_REQUEST['deleteArticle'];
+                $where = "WHERE id_article = '$id'";
                 $result = $this->delete('article', $where);
                 if ($result != 0) {
                     $_SESSION['icon'] = "success";

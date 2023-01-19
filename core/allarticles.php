@@ -53,7 +53,7 @@ $AllUsers = $User->GetUsers();
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table text-white">
+                                <table class="table text-white" id="Table">
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
@@ -94,7 +94,7 @@ $AllUsers = $User->GetUsers();
                                                     }  ?></td>
                                                 <td class="w-25" id="ArticleDescription<?= $article['id_article']; ?>"><?= $article['description']; ?></td>
                                                 <td>
-                                                    <a href="#" onclick="GetArticle('<?= $article['id_article']; ?>','<?= $article['id_category']; ?>')" class="btn btn-sm btn-warning">Edit</a>
+                                                    <a href="#" onclick="GetArticle('<?= $article['id_article']; ?>','<?= $article['id_category']; ?>','<?= $article['id_admin']; ?>')" class="btn btn-sm btn-warning">Edit</a>
                                                     <a href="#" onclick="DeleteArticle('<?= $article['id_article']; ?>')" class="btn btn-sm btn-danger">Delete</a>
                                                 </td>
                                             </tr>
@@ -121,7 +121,7 @@ $AllUsers = $User->GetUsers();
                             <form id="form" method="POST" enctype="multipart/form-data">
                                 <div class="mb-0">
                                     <label class="col-form-label">Title</label>
-                                    <input type="text" class="form-control" id="TitleInput" name="title" />
+                                    <input type="text" class="form-control" id="TitleInput" name="title" oninput="validateName()" />
                                     <div id="ValidateTitle"></div>
                                 </div>
                                 <div class="mb-0">
@@ -139,7 +139,8 @@ $AllUsers = $User->GetUsers();
 
                                     </select>
                                 </div>
-                                <input type="hidden" id="IdInput" name="id" />
+                                <input type="hidden" id="IdInput" name="id_article" />
+                                <input type="hidden" id="IdAdmin" name="id_admin" />
                                 <div class="mb-0">
                                     <label class="col-form-label">Picture</label>
                                     <div id="">

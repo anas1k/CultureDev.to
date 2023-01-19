@@ -4,22 +4,38 @@
  */
 
 // event listener for saveValidation
-$('#saveArticle').click(function (e) {
-    if (document.getElementById('NameInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('NameInput').value)) {
+function validateName() {
+    if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
+        // e.preventDefault();
+
+        document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateDescription').innerText = '';
+
+        document.getElementById('TitleInput').setAttribute('style', 'color:red; border: 1px red solid ;');
+
+        document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
+        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:10px;');
+    } else {
+        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateTitle').innerText = '';
+    }
+}
+/* $('#saveArticle').click(function (e) {
+    if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
         e.preventDefault();
 
         document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
         document.getElementById('ValidateDescription').innerText = '';
 
-        document.getElementById('NameInput').setAttribute('style', 'color:red; border: 1px red solid ;');
+        document.getElementById('TitleInput').setAttribute('style', 'color:red; border: 1px red solid ;');
 
-        document.getElementById('ValidateName').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
-        document.getElementById('ValidateName').setAttribute('style', 'color:red;font-size:10px;');
+        document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
+        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:10px;');
     } else if (document.getElementById('DescriptionInput').value == '' || !/^[a-z A-Z 0-9.:,]{5,}$/.test(document.getElementById('DescriptionInput').value)) {
         e.preventDefault();
 
-        document.getElementById('NameInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateName').innerText = '';
+        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateTitle').innerText = '';
 
         document.getElementById('DescriptionInput').setAttribute('style', 'color:red; border: 1px red solid ;');
         document.getElementById('ValidateDescription').innerText = 'Veuillez entrer une description valide ! verifiez que la description contient au minimum 5 caractéres!!';
@@ -27,8 +43,8 @@ $('#saveArticle').click(function (e) {
     } else if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
         e.preventDefault();
 
-        document.getElementById('NameInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateName').innerText = '';
+        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateTitle').innerText = '';
 
         document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
         document.getElementById('ValidateDescription').innerText = '';
@@ -37,24 +53,24 @@ $('#saveArticle').click(function (e) {
         document.getElementById('ValidatePicture').innerText = 'Veuillez choisr un fichier photo ! verifiez que la photo contient au maximum 10MB !!';
         document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:red;font-size:10px;');
     }
-});
+}); */
 
 // event listener for updateValidation
 $('#updateArticle').click(function (ee) {
-    if (document.getElementById('NameInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('NameInput').value)) {
+    if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
         ee.preventDefault();
 
         document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
         document.getElementById('ValidateDescription').innerText = '';
 
-        document.getElementById('NameInput').setAttribute('style', 'color: red; border: 1px red solid;');
-        document.getElementById('ValidateName').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
-        document.getElementById('ValidateName').setAttribute('style', 'color:red;font-size:10px;');
+        document.getElementById('TitleInput').setAttribute('style', 'color: red; border: 1px red solid;');
+        document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
+        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:10px;');
     } else if (document.getElementById('DescriptionInput').value == '' || !/^[a-z A-Z 0-9.:,/]{5,}$/.test(document.getElementById('DescriptionInput').value)) {
         ee.preventDefault();
 
-        document.getElementById('NameInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateName').innerText = '';
+        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateTitle').innerText = '';
 
         document.getElementById('DescriptionInput').setAttribute('style', 'color:red; border: 1px red solid ;');
         document.getElementById('ValidateDescription').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres!!';
@@ -62,8 +78,8 @@ $('#updateArticle').click(function (ee) {
     } else if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
         ee.preventDefault();
 
-        document.getElementById('NameInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateName').innerText = '';
+        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateTitle').innerText = '';
 
         document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
         document.getElementById('ValidateDescription').innerText = '';
@@ -112,8 +128,8 @@ function createArticle() {
     document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
     document.getElementById('ValidateDescription').innerText = '';
 
-    document.getElementById('NameInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-    document.getElementById('ValidateName').innerText = '';
+    document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+    document.getElementById('ValidateTitle').innerText = '';
     document.getElementById('ValidatePicture').innerText = '';
     document.getElementById('PictureFileField').setAttribute('style', 'border-radius: 1em !important; background-color: #151521 !important;');
     document.getElementById('PictureFileField').setAttribute('class', 'dropify-wrapper');
@@ -121,7 +137,7 @@ function createArticle() {
     document.getElementById('PreviewFileField').setAttribute('style', 'display:none;');
 }
 
-function GetArticle(id, idCategory) {
+function GetArticle(id, idCategory, idAdmin) {
     // initialise Article form
     document.getElementById('form').reset();
 
@@ -135,20 +151,20 @@ function GetArticle(id, idCategory) {
     document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
     document.getElementById('ValidateDescription').innerText = '';
 
-    document.getElementById('NameInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-    document.getElementById('ValidateName').innerText = '';
+    document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+    document.getElementById('ValidateTitle').innerText = '';
 
     /* console.log(id); */
 
-    document.getElementById('NameInput').value = document.querySelector(`#ArticleName${id}`).innerText;
+    document.getElementById('TitleInput').value = document.querySelector(`#ArticleTitle${id}`).innerText;
+
+    document.getElementById('SubjectInput').value = document.querySelector(`#ArticleSubject${id}`).innerText;
 
     document.getElementById('CategoryInput').value = idCategory;
 
+    document.getElementById('IdAdmin').value = idAdmin;
+
     document.getElementById('DescriptionInput').value = document.querySelector(`#ArticleDescription${id}`).innerText;
-
-    document.getElementById('PriceInput').value = document.querySelector(`#ArticlePrice${id}`).innerText;
-
-    document.getElementById('QuantityInput').value = document.querySelector(`#ArticleQuantity${id}`).innerText;
 
     document.getElementById('IdInput').value = id;
 
@@ -183,9 +199,9 @@ function DeleteArticle(id) {
             Swal.fire({ background: '#1e1e2d', color: '#F0F6FC', title: 'Deleted!', text: 'Your article has been deleted successfully. ', icon: 'error' });
             // using ajax to send data without refresh
             $.ajax({
-                url: '../include/require.php',
+                url: '../core/allarticles.php',
                 type: 'POST',
-                data: { deleteArticleForm: id },
+                data: { deleteArticle: id },
                 dataType: 'html',
                 success: function () {
                     // removing element from dom
@@ -227,7 +243,7 @@ function deleteCategory(id) {
             // using ajax to send data without refresh
             $.ajax({
                 url: '../core/allcategories.php',
-                type: 'GET',
+                type: 'POST',
                 data: { DeleteCategory: id },
                 dataType: 'HTML',
                 success: function () {

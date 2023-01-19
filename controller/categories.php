@@ -59,9 +59,8 @@ class CategoryController extends Crud
 
     public function DeleteCategory()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['DeleteCategory'])) {
-                print_r($_REQUEST['DeleteCategory']);
                 $id = $_REQUEST['DeleteCategory'];
                 $where = "WHERE id_category = $id";
                 $result = parent::delete('category', $where);
