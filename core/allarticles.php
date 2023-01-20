@@ -82,8 +82,6 @@ $AllUsers = $User->GetUsers();
                                                     <?php foreach ($AllCategories as $category) {
                                                         if ($article['id_category'] == $category['id_category']) {
                                                             echo $category['name'];
-                                                        } else {
-                                                            echo 'Category not found';
                                                         }
                                                     }  ?></td>
                                                 <td id="ArticleAdmin<?= $article['id_article']; ?>">

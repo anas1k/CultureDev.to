@@ -55,9 +55,16 @@ class UsersController extends Crud
             }
         }
     }
+
     public function GetUsers()
     {
         $res = $this->select('admin', '*');
+        return $res;
+    }
+
+    public function FourUsers()
+    {
+        $res = $this->select('admin', '*', 'ORDER BY id_admin DESC LIMIT 4');
         return $res;
     }
 }

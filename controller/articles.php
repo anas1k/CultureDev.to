@@ -88,23 +88,83 @@ class ArticlesController extends Crud
     public function EditArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_REQUEST['editArticleForm'])) {
+            if (isset($_REQUEST['updateArticleForm'])) {
                 extract($_POST);
-                $para = [
-                    'title' => $title,
-                    'id_category' => $id_category,
-                    'id_admin' => $id_admin,
-                    'picture' => $picture,
-                    'subject' => $subject,
-                    'description' => $description
-                ];
-                $where = "id_article = '$id'";
-                $result = $this->update('article', $para, $where);
-                if ($result != 0) {
-                    $_SESSION['icon'] = "success";
-                    $_SESSION['message'] = "Article modifié avec succès";
-                    header('Location: ../core/allarticles.php'); //refresh page
+                // print_r($_POST);
+                // print_r($_FILES);
+                // die;
+                if (empty($title) || empty($id_category) || empty($subject)  || empty($description)) {
+                    $_SESSION['icon'] = "error";
+                    $_SESSION['message'] = "Veuillez remplir tous les champs";
+                    header('Location: ../core/allarticles.php'); //redirect to page
                     die;
+                } else {
+                    if ($_FILES['picture']['name'] != "") {
+                        $fileName = $_FILES['picture']['name'];
+                        $fileSize = $_FILES['picture']['size'];
+                        $fileError = $_FILES['picture']['error'];
+
+                        $fileExt = explode('.', $fileName);
+                        $fileActualExt = strtolower(end($fileExt));
+                        $allowed = array('jpg', 'jpeg', 'png', 'jfif');
+
+                        if (in_array($fileActualExt, $allowed)) {
+                            if ($fileError == 0) {
+                                if ($fileSize < 1728640) {  // 1MB max file size
+                                    $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique name using time and date and name of 'picture'
+                                    $fileDestination = "../assets/img/uploads/" . $fileNameNew;
+                                    move_uploaded_file($_FILES['picture']['tmp_name'], $fileDestination);
+                                    $para = [
+                                        'title' => $title,
+                                        'id_category' => $id_category,
+                                        'id_admin' => $id_admin,
+                                        'picture' => $fileDestination,
+                                        'subject' => $subject,
+                                        'description' => $description
+                                    ];
+                                    $where = "id_article = '$id_article'";
+                                    $result = $this->update('article', $para, $where);
+                                    if ($result != 0) {
+                                        $_SESSION['icon'] = "success";
+                                        $_SESSION['message'] = "Article modifié avec succès";
+                                        header('Location: ../core/allarticles.php'); //refresh page
+                                        die;
+                                    }
+                                } else {
+                                    $_SESSION['icon'] = "error";
+                                    $_SESSION['message'] = "La taille de fichier est trop grand!!";
+                                    header('Location: ../core/allarticles.php'); //to avoid alerts when refresh page
+                                    die;
+                                }
+                            } else {
+                                $_SESSION['icon'] = "error";
+                                $_SESSION['message'] = "Erreur de téléchargement de fichier!!";
+                                header('Location: ../core/allarticles.php'); //to avoid alerts when refresh page
+                                die;
+                            }
+                        } else {
+                            $_SESSION['icon'] = "error";
+                            $_SESSION['message'] = "Erreur de type de fichier!!";
+                            header('Location: ../core/allarticles.php'); //to avoid alerts when refresh page
+                            die;
+                        }
+                    } else {
+                        $para = [
+                            'title' => $title,
+                            'id_category' => $id_category,
+                            'id_admin' => $id_admin,
+                            'subject' => $subject,
+                            'description' => $description
+                        ];
+                        $where = "id_article = '$id_article'";
+                        $result = $this->update('article', $para, $where);
+                        if ($result != 0) {
+                            $_SESSION['icon'] = "success";
+                            $_SESSION['message'] = "Article modifié avec succès";
+                            header('Location: ../core/allarticles.php'); //refresh page
+                            die;
+                        }
+                    }
                 }
             }
         }
@@ -115,7 +175,9 @@ class ArticlesController extends Crud
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['deleteArticle'])) {
                 $id = $_REQUEST['deleteArticle'];
-                $where = "WHERE id_article = '$id'";
+                $res =
+
+                    $where = "WHERE id_article = '$id'";
                 $result = $this->delete('article', $where);
                 if ($result != 0) {
                     $_SESSION['icon'] = "success";

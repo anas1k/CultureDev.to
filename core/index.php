@@ -21,6 +21,7 @@ $TotalCategories = count($AllCategories);
 $Users = new UsersController();
 $AllUsers = $Users->GetUsers();
 $TotalUsers = count($AllUsers);
+$FourUsers = $Users->FourUsers();
 
 $Articles = new ArticlesController();
 $AllArticles = $Articles->GetArticles();
@@ -113,8 +114,6 @@ $TotalArticles = count($AllArticles);
                                                     <?php foreach ($AllCategories as $category) {
                                                         if ($article['id_category'] == $category['id_category']) {
                                                             echo $category['name'];
-                                                        } else {
-                                                            echo 'Category not found';
                                                         }
                                                     }  ?></td>
                                                 <td id="ArticleAdmin<?= $article['id_article']; ?>">
@@ -135,9 +134,35 @@ $TotalArticles = count($AllArticles);
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-xl-12 mb-4 mb-lg-0">
+                <div class="col-6 col-xl-6 mb-4 mb-lg-0">
                     <div class="card">
-                        <h5 class="card-header">Recent categories</h5>
+                        <h5 class="card-header">Recent Admins</h5>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table text-white">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($FourUsers as $user) { ?>
+                                            <tr>
+                                                <th scope="row"><?= $user['id_admin']; ?></th>
+                                                <td><?= $user['fullname']; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href="allcategories.php" class="btn btn-block col-12 btn-dark">View all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-xl-6 mb-4 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">Recent Categories</h5>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table text-white">
