@@ -175,9 +175,14 @@ class ArticlesController extends Crud
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['deleteArticle'])) {
                 $id = $_REQUEST['deleteArticle'];
-                $res =
+                $all = $this->select('article', '*', "WHERE id_article = '$id'");
+                $res = $all[0];
+                if ($res['picture'] != '') {
+                    $picture = $res['picture'];
+                    unlink($picture);
+                }
 
-                    $where = "WHERE id_article = '$id'";
+                $where = "WHERE id_article = '$id'";
                 $result = $this->delete('article', $where);
                 if ($result != 0) {
                     $_SESSION['icon'] = "success";

@@ -3,44 +3,53 @@
  *
  */
 
-// event listener for saveValidation
+// Validation for sensitive inputs
 function validateName() {
     if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
-        // e.preventDefault();
-
-        document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateDescription').innerText = '';
-
         document.getElementById('TitleInput').setAttribute('style', 'color:red; border: 1px red solid ;');
 
         document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
-        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:10px;');
+        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:13px;');
     } else {
         document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
         document.getElementById('ValidateTitle').innerText = '';
     }
 }
-/* $('#saveArticle').click(function (e) {
-    if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
-        e.preventDefault();
-
-        document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateDescription').innerText = '';
-
-        document.getElementById('TitleInput').setAttribute('style', 'color:red; border: 1px red solid ;');
-
-        document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
-        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:10px;');
-    } else if (document.getElementById('DescriptionInput').value == '' || !/^[a-z A-Z 0-9.:,]{5,}$/.test(document.getElementById('DescriptionInput').value)) {
-        e.preventDefault();
-
-        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateTitle').innerText = '';
-
+function validateDescription() {
+    if (document.getElementById('DescriptionInput').value == '' || !/^[a-z A-Z 0-9.:,]{5,}$/.test(document.getElementById('DescriptionInput').value)) {
         document.getElementById('DescriptionInput').setAttribute('style', 'color:red; border: 1px red solid ;');
         document.getElementById('ValidateDescription').innerText = 'Veuillez entrer une description valide ! verifiez que la description contient au minimum 5 caractéres!!';
-        document.getElementById('ValidateDescription').setAttribute('style', 'color:red;font-size:10px;');
-    } else if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
+        document.getElementById('ValidateDescription').setAttribute('style', 'color:red;font-size:13px;');
+    } else {
+        document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateDescription').innerText = '';
+    }
+}
+
+function validateSubject() {
+    if (document.getElementById('SubjectInput').value == '' || !/^[a-z A-Z 0-9.:,]{5,}$/.test(document.getElementById('SubjectInput').value)) {
+        document.getElementById('SubjectInput').setAttribute('style', 'color:red; border: 1px red solid ;');
+        document.getElementById('ValidateSubject').innerText = 'Veuillez entrer une description valide ! verifiez que la description contient au minimum 5 caractéres!!';
+        document.getElementById('ValidateSubject').setAttribute('style', 'color:red;font-size:13px;');
+    } else {
+        document.getElementById('SubjectInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateSubject').innerText = '';
+    }
+}
+function validatePicture() {
+    if (document.getElementById('PictureFileField').classList.contains('has-preview') != false) {
+        document.getElementById('ValidatePicture').setAttribute('class', 'text-danger');
+        document.getElementById('ValidatePicture').innerText = 'Veuillez choisr un fichier photo ! verifiez que la photo contient au maximum 10MB !!';
+        document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:red;font-size:10px;');
+    } else {
+        document.getElementById('ValidatePicture').setAttribute('class', 'text-success');
+        document.getElementById('ValidatePicture').innerText = 'Fichier photo valide !';
+        document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:green;font-size:10px;');
+    }
+}
+
+$('#saveArticle').click(function (e) {
+    if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
         e.preventDefault();
 
         document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
@@ -53,29 +62,11 @@ function validateName() {
         document.getElementById('ValidatePicture').innerText = 'Veuillez choisr un fichier photo ! verifiez que la photo contient au maximum 10MB !!';
         document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:red;font-size:10px;');
     }
-}); */
+});
 
 // event listener for updateValidation
 $('#updateArticle').click(function (ee) {
-    if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
-        ee.preventDefault();
-
-        document.getElementById('DescriptionInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateDescription').innerText = '';
-
-        document.getElementById('TitleInput').setAttribute('style', 'color: red; border: 1px red solid;');
-        document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
-        document.getElementById('ValidateTitle').setAttribute('style', 'color:red;font-size:10px;');
-    } else if (document.getElementById('DescriptionInput').value == '' || !/^[a-z A-Z 0-9.:,/]{5,}$/.test(document.getElementById('DescriptionInput').value)) {
-        ee.preventDefault();
-
-        document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
-        document.getElementById('ValidateTitle').innerText = '';
-
-        document.getElementById('DescriptionInput').setAttribute('style', 'color:red; border: 1px red solid ;');
-        document.getElementById('ValidateDescription').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres!!';
-        document.getElementById('ValidateDescription').setAttribute('style', 'color:red;font-size:10px;');
-    } else if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
+    if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
         ee.preventDefault();
 
         document.getElementById('TitleInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
@@ -90,8 +81,33 @@ $('#updateArticle').click(function (ee) {
     }
 });
 
+function validateEmail() {
+    var email = document.getElementById('EmailInput').value;
+    var emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+    if (email == '' || !emailRegex.test(email)) {
+        document.getElementById('EmailInput').setAttribute('style', 'color: red;border: 1px red solid;');
+        document.getElementById('ValidateEmail').innerText = "Veuillez entrer un email valide ! Verifiez que l'email sans caractéres speciaux!!";
+        document.getElementById('ValidateEmail').setAttribute('style', 'color:red;font-size:10px;');
+    } else {
+        document.getElementById('EmailInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidateEmail').innerText = '';
+    }
+}
+function validatePassword() {
+    var password = document.getElementById('PasswordInput').value;
+    var passwordRegex = /^[a-z A-Z 0-9]{5,}$/;
+    if (password == '' || !passwordRegex.test(password)) {
+        document.getElementById('PasswordInput').setAttribute('style', 'color: red;border: 1px red solid;');
+        document.getElementById('ValidatePassword').innerText = 'Veuillez entrer un mot de passe valide ! Verifiez que le mot de passe contient au minimum 5 caractéres et sans caractéres speciaux!!';
+        document.getElementById('ValidatePassword').setAttribute('style', 'color:red;font-size:10px;');
+    } else {
+        document.getElementById('PasswordInput').setAttribute('style', 'color:black; border: 1px #ced4da solid ;');
+        document.getElementById('ValidatePassword').innerText = '';
+    }
+}
+
 // event listener for loginValidation
-$('#LoginUser').click(function (e) {
+/* $('#LoginUser').click(function (e) {
     if (document.getElementById('EmailInput').value == '' || !/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(document.getElementById('EmailInput').value)) {
         e.preventDefault();
 
@@ -111,7 +127,7 @@ $('#LoginUser').click(function (e) {
         document.getElementById('ValidatePassword').innerText = 'Veuillez entrer un mot de passe valide ! Verifiez que le mot de passe contient au minimum 5 caractéres et sans caractéres speciaux!!';
         document.getElementById('ValidatePassword').setAttribute('style', 'color:red;font-size:10px;');
     }
-});
+}); */
 
 function createArticle() {
     // initialiser Article form

@@ -113,18 +113,18 @@ $AllUsers = $User->GetUsers();
                     <div class="modal-content background text-white">
                         <div class="modal-header">
                             <h5 class="" id="exampleModalLabel">Add Article</h5>
-                            <button type="button" class="fa fa-xmark px-1 p-0 m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body pt-0 pb-1">
                             <form id="form" method="POST" enctype="multipart/form-data">
                                 <div class="mb-0">
                                     <label class="col-form-label">Title</label>
-                                    <input type="text" class="form-control" id="TitleInput" name="title" oninput="validateName()" />
+                                    <input type="text" class="form-control" id="TitleInput" name="title" oninput="validateName()" required />
                                     <div id="ValidateTitle"></div>
                                 </div>
                                 <div class="mb-0">
                                     <label class="col-form-label">Subject</label>
-                                    <input type="text" class="form-control" id="SubjectInput" name="subject" />
+                                    <input type="text" class="form-control" id="SubjectInput" name="subject" oninput="validateSubject()" required />
                                     <div id="ValidateSubject"></div>
                                 </div>
                                 <div class="mb-0">
@@ -142,13 +142,13 @@ $AllUsers = $User->GetUsers();
                                 <div class="mb-0">
                                     <label class="col-form-label">Picture</label>
                                     <div id="">
-                                        <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100" type="file" name="picture" />
+                                        <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100" type="file" name="picture" oninput="validatePicture()" required />
                                         <div id="ValidatePicture" class="text-success"></div>
                                     </div>
                                 </div>
-                                <div class="mb-0">
+                                <div class="mb-2">
                                     <label class="col-form-label">Description</label>
-                                    <textarea class="form-control" id="DescriptionInput" rows="8" name="description"></textarea>
+                                    <textarea class="form-control" id="DescriptionInput" rows="8" name="description" oninput="validateDescription()" required></textarea>
                                     <span id="ValidateDescription"></span>
                                 </div>
                                 <div class="modal-footer">

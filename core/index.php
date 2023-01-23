@@ -99,7 +99,7 @@ $TotalArticles = count($AllArticles);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($AllArticles as $article) {
+                                        <?php foreach ($FourArticles as $article) {
                                         ?>
                                             <tr id="Article<?= $article['id_article']; ?>">
                                                 <th scope="row"><?= $article['id_article']; ?></th>
@@ -134,7 +134,7 @@ $TotalArticles = count($AllArticles);
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 col-xl-6 mb-4 mb-lg-0">
+                <div class="col-8 col-xl-8 col-md-12 mb-4 mb-lg-0">
                     <div class="card">
                         <h5 class="card-header">Recent Admins</h5>
                         <div class="card-body">
@@ -144,6 +144,7 @@ $TotalArticles = count($AllArticles);
                                         <tr>
                                             <th scope="col">Id</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -151,6 +152,8 @@ $TotalArticles = count($AllArticles);
                                             <tr>
                                                 <th scope="row"><?= $user['id_admin']; ?></th>
                                                 <td><?= $user['fullname']; ?></td>
+                                                <td><?= $user['email']; ?></td>
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -160,7 +163,7 @@ $TotalArticles = count($AllArticles);
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-xl-6 mb-4 mb-lg-0">
+                <div class="col-4 col-xl-4 col-md-12 mb-4 mb-lg-0">
                     <div class="card">
                         <h5 class="card-header">Recent Categories</h5>
                         <div class="card-body">
