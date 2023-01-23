@@ -24,16 +24,16 @@ $Users->AddUser();
                         <div class="input-group mt-2 mt-md-0 p-2">
                             <span class="fa fa-user fa-lg pt-3 input-group-text bg-secondary"></span>
                             <input type="text" class="form-control col-12" placeholder="Full Name" id="NameInput" name="name">
-                            <div class="col-12" id="ValidateEmail"></div>
+                            <div class="col-12" id="ValidateName"></div>
                         </div>
                         <div class="input-group pt-1 p-2">
                             <span class="fa fa-user fa-lg pt-3 input-group-text bg-secondary"></span>
-                            <input type="text" class="form-control col-12" placeholder="Email" id="EmailInput" name="email">
+                            <input type="text" class="form-control col-12" placeholder="Email" id="EmailInput" name="email" oninput="validateEmail()">
                             <div class="col-12" id="ValidateEmail"></div>
                         </div>
                         <div class="input-group pt-1 p-2">
                             <span class="fa fa-lock fa-lg pt-3 input-group-text bg-secondary"></span>
-                            <input type="password" class="form-control" placeholder="Password" id="PasswordInput" name="password">
+                            <input type="password" class="form-control" placeholder="Password" id="PasswordInput" name="password" oninput="validatePassword()">
                             <div class="col-12" id="ValidatePassword"></div>
                         </div>
                         <div class="input-group p-2">

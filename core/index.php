@@ -4,6 +4,7 @@ $path = "Home";
 
 require_once('../controller/users.php');
 require_once('../controller/categories.php');
+require_once('../controller/articles.php');
 
 if (!isset($_SESSION['fullname'])) {
     $_SESSION['icon'] = "error";
@@ -20,6 +21,12 @@ $TotalCategories = count($AllCategories);
 $Users = new UsersController();
 $AllUsers = $Users->GetUsers();
 $TotalUsers = count($AllUsers);
+$FourUsers = $Users->FourUsers();
+
+$Articles = new ArticlesController();
+$AllArticles = $Articles->GetArticles();
+$FourArticles = $Articles->FourArticles();
+$TotalArticles = count($AllArticles);
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +56,7 @@ $TotalUsers = count($AllUsers);
                     <div class="card">
                         <h5 class="card-header">Articles</h5>
                         <div class="card-body">
-                            <h5 class="card-title text-center"></h5>
+                            <h5 class="card-title text-center"><?= $TotalArticles; ?></h5>
                             <p class="card-text text-success"></p>
                         </div>
                     </div>
@@ -83,39 +90,39 @@ $TotalUsers = count($AllUsers);
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Admin</th>
-                                            <th scope="col">Category</th>
+                                            <th scope="col">Picture</th>
+                                            <th scope="col">Article Name</th>
                                             <th scope="col">Subject</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Added By</th>
                                             <th scope="col">Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($FourProducts as $product) { ?>
-                                            <tr>
-                                                <th scope="row"><?= $product['id']; ?></th>
-                                                <?php if (!empty($product['picture'])) {
-                                                    echo '<td><img src="' . $product['picture'] . '" style="width:4rem;" /></td>';
+                                        <?php foreach ($FourArticles as $article) {
+                                        ?>
+                                            <tr id="Article<?= $article['id_article']; ?>">
+                                                <th scope="row"><?= $article['id_article']; ?></th>
+                                                <?php if (!empty($article['picture'])) {
+                                                    echo '<td><img id="ArticlePicture' . $article['id_article'] . '" src="' . $article['picture'] . '" style="width:4rem;" /></td>';
                                                 } else {
-                                                    echo '<td><img src="../assets/img/logo/frame.png" style="width:4rem;" /></td>';
+                                                    echo '<td><img class="m-0" src="../assets/img/logo/frame.png" style="width:4rem;height: 4.7rem;" /></td>';
                                                 } ?>
-                                                <td><?= $product['name']; ?></td>
-                                                <?php foreach ($AllCategories as $Category) {
-                                                    if ($Category['id'] == $product['id_category']) {
-                                                        echo "<td>" . $Category['name'] . "</td>";
-                                                    }
-                                                }
-                                                ?>
-                                                <td><?= $product['name']; ?></td>
-                                                <?php foreach ($AllCategories as $Category) {
-                                                    if ($Category['id'] == $product['id_category']) {
-                                                        echo "<td>" . $Category['name'] . "</td>";
-                                                    }
-                                                }
-                                                ?>
-                                                <td><?= $product['quantity']; ?></td>
-                                                <td><?= $product['description']; ?></td>
+                                                <td id="ArticleTitle<?= $article['id_article']; ?>"><?= $article['title']; ?></td>
+                                                <td id="ArticleSubject<?= $article['id_article']; ?>"><?= $article['subject']; ?></td>
+                                                <td id="ArticleCategory<?= $article['id_article']; ?>">
+                                                    <?php foreach ($AllCategories as $category) {
+                                                        if ($article['id_category'] == $category['id_category']) {
+                                                            echo $category['name'];
+                                                        }
+                                                    }  ?></td>
+                                                <td id="ArticleAdmin<?= $article['id_article']; ?>">
+                                                    <?php foreach ($AllUsers as $user) {
+                                                        if ($article['id_admin'] == $user['id_admin']) {
+                                                            echo $user['fullname'];
+                                                        }
+                                                    }  ?></td>
+                                                <td class="w-25" id="ArticleDescription<?= $article['id_article']; ?>"><?= $article['description']; ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -127,9 +134,38 @@ $TotalUsers = count($AllUsers);
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-xl-12 mb-4 mb-lg-0">
+                <div class="col-8 col-xl-8 col-md-12 mb-4 mb-lg-0">
                     <div class="card">
-                        <h5 class="card-header">Recent categories</h5>
+                        <h5 class="card-header">Recent Admins</h5>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table text-white">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($FourUsers as $user) { ?>
+                                            <tr>
+                                                <th scope="row"><?= $user['id_admin']; ?></th>
+                                                <td><?= $user['fullname']; ?></td>
+                                                <td><?= $user['email']; ?></td>
+
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href="allcategories.php" class="btn btn-block col-12 btn-dark">View all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-xl-4 col-md-12 mb-4 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">Recent Categories</h5>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table text-white">
