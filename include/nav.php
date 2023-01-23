@@ -2,7 +2,7 @@
 
     <div class="">
         <a class="position" href="../core"><img src="../assets/img/logo/Logo.png" alt="" class="logo" /></a>
-        <ul class="nav nav-pills mt-5 flex-column">
+        <ul class="nav nav-pills mt-5 flex-column p-2">
             <li class="nav-item m-2">
                 <a class="nav-link <?= $path == "Home" ? "active" : ""; ?> d-flex align-items-center" href="../core/index.php">
                     <i class="text-white  fa fa-house"></i>
@@ -30,9 +30,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <div class="col-12 col-md-2 col-lg-2">
+    <!-- <div class="col-12 col-md-2 col-lg-2">
         <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search" />
-    </div>
+    </div> -->
     <div class="col-12 col-md-5 col-lg-7 d-flex align-items-center justify-content-md-end mr-5 mt-3 mt-md-0">
         <div class="dropdown">
             <button class="btn btn-info dropdown-toggle  text-capitalize" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-user"></i><span class="ml-3" style="text-transform: capitalize !important;"><?= $_SESSION['fullname']; ?></span></button>

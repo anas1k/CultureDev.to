@@ -84,7 +84,7 @@ $AllUsers = $User->GetUsers();
                                                             echo $category['name'];
                                                         }
                                                     }  ?></td>
-                                                <td id="ArticleAdmin<?= $article['id_article']; ?>">
+                                                <td id="ArticleAdmin<?= $article['id_article']; ?>" style="text-transform: capitalize !important;">
                                                     <?php foreach ($AllUsers as $user) {
                                                         if ($article['id_admin'] == $user['id_admin']) {
                                                             echo $user['fullname'];
@@ -117,46 +117,53 @@ $AllUsers = $User->GetUsers();
                         </div>
                         <div class="modal-body pt-0 pb-1">
                             <form id="form" method="POST" enctype="multipart/form-data">
-                                <div class="mb-0">
-                                    <label class="col-form-label">Title</label>
-                                    <input type="text" class="form-control" id="TitleInput" name="title" oninput="validateName()" required />
-                                    <div id="ValidateTitle"></div>
-                                </div>
-                                <div class="mb-0">
-                                    <label class="col-form-label">Subject</label>
-                                    <input type="text" class="form-control" id="SubjectInput" name="subject" oninput="validateSubject()" required />
-                                    <div id="ValidateSubject"></div>
-                                </div>
-                                <div class="mb-0">
-                                    <label for="articleCategory" class="col-form-label">Category</label>
-                                    <select class="form-select" id="CategoryInput" name="id_category" required>
-                                        <option value selected disabled>Please select</option>
-                                        <?php foreach ($AllCategories as $category) {
-                                            echo '<option value="' . $category['id_category'] . '">' . $category['name'] . '</option>';
-                                        } ?>
+                                <div id="multii">
+                                    <div class="formul">
+                                        <div class="mb-0">
+                                            <label class="col-form-label">Title</label>
+                                            <input type="text" class="form-control" id="TitleInput" name="title[]" oninput="validateName()" required />
+                                            <div id="ValidateTitle"></div>
+                                        </div>
+                                        <div class="mb-0">
+                                            <label class="col-form-label">Subject</label>
+                                            <input type="text" class="form-control" id="SubjectInput" name="subject[]" oninput="validateSubject()" required />
+                                            <div id="ValidateSubject"></div>
+                                        </div>
+                                        <div class="mb-0">
+                                            <label for="articleCategory" class="col-form-label">Category</label>
+                                            <select class="form-select" id="CategoryInput" name="id_category[]" required>
+                                                <option value selected disabled>Please select</option>
+                                                <?php foreach ($AllCategories as $category) {
+                                                    echo '<option value="' . $category['id_category'] . '">' . $category['name'] . '</option>';
+                                                } ?>
 
-                                    </select>
-                                </div>
-                                <input type="hidden" id="IdInput" name="id_article" />
-                                <input type="hidden" id="IdAdmin" name="id_admin" />
-                                <div class="mb-0">
-                                    <label class="col-form-label">Picture</label>
-                                    <div id="">
-                                        <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100" type="file" name="picture" oninput="validatePicture()" required />
-                                        <div id="ValidatePicture" class="text-success"></div>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" id="IdInput" name="id_article" />
+                                        <input type="hidden" id="IdAdmin" name="id_admin" />
+                                        <div class="mb-0">
+                                            <label class="col-form-label">Picture</label>
+                                            <div id="">
+                                                <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100" type="file" name="picture[]" oninput="validatePicture()" />
+                                                <div id="ValidatePicture" class="text-success"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="col-form-label">Description</label>
+                                            <textarea class="form-control" id="DescriptionInput" rows="8" name="description[]" oninput="validateDescription()" required></textarea>
+                                            <span id="ValidateDescription"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-2">
-                                    <label class="col-form-label">Description</label>
-                                    <textarea class="form-control" id="DescriptionInput" rows="8" name="description" oninput="validateDescription()" required></textarea>
-                                    <span id="ValidateDescription"></span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="reset" class="btn btn-outline-light text-black" data-bs-dismiss="modal">Cancel</button>
                                     <button id="saveArticle" type="submit" name="addArticleForm" class="btn btn-primary">Save</button>
+                                    <button id="addArticle" type="button" name="addForm" onclick="MultiForm()" class="btn btn-warning text-black">Add Another</button>
                                     <div id="editArticle" style="display: none">
                                         <!-- <button type="submit" id="deleteValidation" name="deleteArticleForm" class="btn btn-danger text-black">Delete</button> -->
+
                                         <button id="updateArticle" type="submit" name="updateArticleForm" class="btn btn-warning text-black">Update</button>
+
                                     </div>
                                 </div>
                             </form>

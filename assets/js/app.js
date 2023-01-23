@@ -106,6 +106,13 @@ function validatePassword() {
     }
 }
 
+function MultiForm() {
+    var formInputs = document.getElementsByClassName('formul')[0];
+    var plus = formInputs.cloneNode(true);
+    var form = document.getElementById('multii');
+    form.appendChild(plus);
+}
+
 // event listener for loginValidation
 /* $('#LoginUser').click(function (e) {
     if (document.getElementById('EmailInput').value == '' || !/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(document.getElementById('EmailInput').value)) {
@@ -136,6 +143,7 @@ function createArticle() {
     // Afficher le boutton save
     document.getElementById('saveArticle').style.display = 'block';
     document.getElementById('editArticle').style.display = 'none';
+    document.getElementById('addArticle').style.display = 'block';
 
     // Ouvrir modal form
     $('#articleModal').modal('show');
