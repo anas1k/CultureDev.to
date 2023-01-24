@@ -40,11 +40,13 @@ class ArticlesController extends Crud
                             $fileActualExt[$i] = strtolower(end($fileExt[$i]));
                             $allowed = array('jpg', 'jpeg', 'png', 'jfif');
 
+
                             if (in_array($fileActualExt[$i], $allowed)) {
                                 if ($fileError[$i] == 0) {
                                     if ($fileSize[$i] < 1728640) {  // 1MB max file size
-                                        $fileNameNew[$i] = date("dmy") . time() . "." . $fileActualExt[$i]; //create unique name using time and date and name of 'picture'
+                                        $fileNameNew[$i] = date("dmy") . time() . $i . "." . $fileActualExt[$i]; //create unique name using time and date and name of 'picture'
                                         $fileDestination[$i] = "../assets/img/uploads/" . $fileNameNew[$i];
+
                                         move_uploaded_file($_FILES['picture']['tmp_name'][$i], $fileDestination[$i]);
                                         $para = [
                                             'title' => $title[$i],

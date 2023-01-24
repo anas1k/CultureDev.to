@@ -105,12 +105,21 @@ function validatePassword() {
         document.getElementById('ValidatePassword').innerText = '';
     }
 }
-
+var i = 0;
 function MultiForm() {
     var formInputs = document.getElementsByClassName('formul')[0];
     var plus = formInputs.cloneNode(true);
+    console.log(plus);
+
+    //plus.querySelector('.div-picture').querySelector('#PictureFileField').className = 'dropify-wrapper s';
+    plus.querySelector('.div-picture').querySelector('#PictureFileField').remove();
+    let input_file = document.createElement('input');
+    input_file.setAttribute('type', 'file');
+    input_file.setAttribute('name', 'picture[]');
+    plus.querySelector('.div-picture').querySelector('#div-pictureee').prepend(input_file);
     var form = document.getElementById('multii');
     form.appendChild(plus);
+    // document.getElementsByClassName('dropify').setAttribute('class', ' ');
 }
 
 // event listener for loginValidation
@@ -198,7 +207,7 @@ function GetArticle(id, idCategory, idAdmin) {
     document.getElementById('PictureInput').setAttribute('src', picTitle);
     document.getElementById('PictureFileField').setAttribute('class', 'dropify-wrapper has-preview');
     document.getElementById('PreviewFileField').setAttribute('style', 'display:block;');
-    document.querySelector('.dropify-render').innerHTML = `<img src="${picTitle}" alt="Picture" style="max-height: 100px;"/>`;
+    document.querySelector('.dropify-render').innerHTML = `<img src="${picTitle}" alt="Picture" style="max-height: 100%;"/>`;
     document.getElementById('ValidatePicture').setAttribute('class', 'text-success');
     document.getElementById('ValidatePicture').innerText = 'Photo précédente deja selectionné ! Si vous voulez changer la photo veuillez entrer une nouvelle photo !!';
     document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:green;font-size:10px;');

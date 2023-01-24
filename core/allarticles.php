@@ -141,10 +141,10 @@ $AllUsers = $User->GetUsers();
                                         </div>
                                         <input type="hidden" id="IdInput" name="id_article" />
                                         <input type="hidden" id="IdAdmin" name="id_admin" />
-                                        <div class="mb-0">
+                                        <div class="mb-0 div-picture">
                                             <label class="col-form-label">Picture</label>
-                                            <div id="">
-                                                <input id="PictureInput" class="" data-max-file-size-preview="10M" data-height="100%" type="file" name="picture[]" />
+                                            <div id="div-pictureee">
+                                                <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100%" type="file" name="picture[]" />
                                                 <div id="ValidatePicture" class="text-success"></div>
                                             </div>
                                         </div>
