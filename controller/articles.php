@@ -23,7 +23,7 @@ class ArticlesController extends Crud
             if (isset($_REQUEST['addArticleForm'])) {
                 extract($_POST);
 
-                for ($i = 0; $i <= count($title); $i++) {
+                for ($i = 0; $i < count($title); $i++) {
                     if (empty($title[$i]) || empty($id_category[$i]) || empty($subject[$i])  || empty($description[$i])) {
                         $_SESSION['icon'] = "error";
                         $_SESSION['message'] = "Veuillez remplir tous les champs";
@@ -31,20 +31,21 @@ class ArticlesController extends Crud
                         die;
                     } else {
                         if ($_FILES['picture']['name'][$i] != "") {
-                            $fileName = $_FILES['picture']['name'][$i];
-                            $fileSize = $_FILES['picture']['size'][$i];
-                            $fileError = $_FILES['picture']['error'][$i];
+                            $fileName[$i] = $_FILES['picture']['name'][$i];
+                            $fileSize[$i] = $_FILES['picture']['size'][$i];
+                            $fileError[$i] = $_FILES['picture']['error'][$i];
 
-                            $fileExt = explode('.', $fileName);
-                            $fileActualExt = strtolower(end($fileExt));
+
+                            $fileExt[$i] = explode('.', $fileName[$i]);
+                            $fileActualExt[$i] = strtolower(end($fileExt[$i]));
                             $allowed = array('jpg', 'jpeg', 'png', 'jfif');
 
-                            if (in_array($fileActualExt, $allowed)) {
-                                if ($fileError == 0) {
-                                    if ($fileSize < 1728640) {  // 1MB max file size
-                                        $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique name using time and date and name of 'picture'
-                                        $fileDestination = "../assets/img/uploads/" . $fileNameNew;
-                                        move_uploaded_file($_FILES['picture']['tmp_name'][$i], $fileDestination);
+                            if (in_array($fileActualExt[$i], $allowed)) {
+                                if ($fileError[$i] == 0) {
+                                    if ($fileSize[$i] < 1728640) {  // 1MB max file size
+                                        $fileNameNew[$i] = date("dmy") . time() . "." . $fileActualExt[$i]; //create unique name using time and date and name of 'picture'
+                                        $fileDestination[$i] = "../assets/img/uploads/" . $fileNameNew[$i];
+                                        move_uploaded_file($_FILES['picture']['tmp_name'][$i], $fileDestination[$i]);
                                         $para = [
                                             'title' => $title[$i],
                                             'id_category' => $id_category[$i],
@@ -53,15 +54,13 @@ class ArticlesController extends Crud
                                             'subject' => $subject[$i],
                                             'description' => $description[$i]
                                         ];
-                                        print_r($para);
-                                        print_r($_FILES);
-                                        die;
+
                                         $result = $this->insert('article', $para);
                                         if ($result != 0) {
                                             $_SESSION['icon'] = "success";
                                             $_SESSION['message'] = "Article ajouté avec succès";
                                             header('Location: ../core/allarticles.php'); //refresh page
-                                            die;
+                                            // die;
                                         }
                                     } else {
                                         $_SESSION['icon'] = "error";
@@ -149,19 +148,19 @@ class ArticlesController extends Crud
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['updateArticleForm'])) {
                 extract($_POST);
-                // print_r($_POST);
-                // print_r($_FILES);
-                // die;
-                if (empty($title) || empty($id_category) || empty($subject)  || empty($description)) {
+                /* print_r($_POST);
+                print_r($_FILES);
+                die; */
+                if (empty($title[0]) || empty($id_category[0]) || empty($subject[0])  || empty($description[0])) {
                     $_SESSION['icon'] = "error";
                     $_SESSION['message'] = "Veuillez remplir tous les champs";
                     header('Location: ../core/allarticles.php'); //redirect to page
                     die;
                 } else {
-                    if ($_FILES['picture']['name'] != "") {
-                        $fileName = $_FILES['picture']['name'];
-                        $fileSize = $_FILES['picture']['size'];
-                        $fileError = $_FILES['picture']['error'];
+                    if ($_FILES['picture']['name'][0] != "") {
+                        $fileName = $_FILES['picture']['name'][0];
+                        $fileSize = $_FILES['picture']['size'][0];
+                        $fileError = $_FILES['picture']['error'][0];
 
                         $fileExt = explode('.', $fileName);
                         $fileActualExt = strtolower(end($fileExt));
@@ -172,14 +171,14 @@ class ArticlesController extends Crud
                                 if ($fileSize < 1728640) {  // 1MB max file size
                                     $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique name using time and date and name of 'picture'
                                     $fileDestination = "../assets/img/uploads/" . $fileNameNew;
-                                    move_uploaded_file($_FILES['picture']['tmp_name'], $fileDestination);
+                                    move_uploaded_file($_FILES['picture']['tmp_name'][0], $fileDestination);
                                     $para = [
-                                        'title' => $title,
-                                        'id_category' => $id_category,
+                                        'title' => $title[0],
+                                        'id_category' => $id_category[0],
                                         'id_admin' => $id_admin,
                                         'picture' => $fileDestination,
-                                        'subject' => $subject,
-                                        'description' => $description
+                                        'subject' => $subject[0],
+                                        'description' => $description[0]
                                     ];
                                     $where = "id_article = '$id_article'";
                                     $result = $this->update('article', $para, $where);
@@ -209,11 +208,11 @@ class ArticlesController extends Crud
                         }
                     } else {
                         $para = [
-                            'title' => $title,
-                            'id_category' => $id_category,
+                            'title' => $title[0],
+                            'id_category' => $id_category[0],
                             'id_admin' => $id_admin,
-                            'subject' => $subject,
-                            'description' => $description
+                            'subject' => $subject[0],
+                            'description' => $description[0]
                         ];
                         $where = "id_article = '$id_article'";
                         $result = $this->update('article', $para, $where);

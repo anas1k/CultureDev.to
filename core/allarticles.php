@@ -144,7 +144,7 @@ $AllUsers = $User->GetUsers();
                                         <div class="mb-0">
                                             <label class="col-form-label">Picture</label>
                                             <div id="">
-                                                <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100" type="file" name="picture[]" oninput="validatePicture()" />
+                                                <input id="PictureInput" class="" data-max-file-size-preview="10M" data-height="100%" type="file" name="picture[]" />
                                                 <div id="ValidatePicture" class="text-success"></div>
                                             </div>
                                         </div>
@@ -161,7 +161,6 @@ $AllUsers = $User->GetUsers();
                                     <button id="addArticle" type="button" name="addForm" onclick="MultiForm()" class="btn btn-warning text-black">Add Another</button>
                                     <div id="editArticle" style="display: none">
                                         <!-- <button type="submit" id="deleteValidation" name="deleteArticleForm" class="btn btn-danger text-black">Delete</button> -->
-
                                         <button id="updateArticle" type="submit" name="updateArticleForm" class="btn btn-warning text-black">Update</button>
 
                                     </div>

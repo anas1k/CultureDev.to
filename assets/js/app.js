@@ -157,7 +157,6 @@ function createArticle() {
     document.getElementById('ValidatePicture').innerText = '';
     document.getElementById('PictureFileField').setAttribute('style', 'border-radius: 1em !important; background-color: #151521 !important;');
     document.getElementById('PictureFileField').setAttribute('class', 'dropify-wrapper');
-    document.getElementById('PictureInput').setAttribute('data-default-file', '');
     document.getElementById('PreviewFileField').setAttribute('style', 'display:none;');
 }
 
@@ -167,6 +166,7 @@ function GetArticle(id, idCategory, idAdmin) {
 
     document.getElementById('saveArticle').style.display = 'none';
     document.getElementById('editArticle').style.display = 'block';
+    document.getElementById('addArticle').style.display = 'none';
 
     // Initialise Article form
     $('#articleModal').modal('show');
