@@ -11,7 +11,7 @@
             </li>
             <li class="nav-item m-2">
                 <a class="nav-link <?= $path == "Articles" ? "active" : ""; ?> d-flex align-items-center" href="../core/allarticles.php">
-                    <i class="fa fa-boxes-stacked text-white"></i>
+                    <i class="fa fa-newspaper text-white"></i>
                     <span class="m-4 <?= $path == "Articles" ? "active-title" : "text-white"; ?>">Articles</span>
                 </a>
             </li>
@@ -21,6 +21,14 @@
                     <span class="m-4 <?= $path == "Category" ? "active-title" : "text-white"; ?>">Category</span>
                 </a>
             </li>
+            <?php if ($_SESSION['super'] == '1') { ?>
+                <li class="nav-item m-2">
+                    <a class="nav-link <?= $path == "Admin" ? "active" : ""; ?> d-flex align-items-center" href="../core/alladmins.php">
+                        <i class="fa fa-users text-white" style="margin-left:-0.1rem"></i>
+                        <span class="m-4 <?= $path == "Admin" ? "active-title" : "text-white"; ?>">Admins</span>
+                    </a>
+                </li>
+            <?php } ?>
         </ul>
     </div>
 </nav>

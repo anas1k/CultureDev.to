@@ -42,6 +42,7 @@ class UsersController extends Crud
                         $_SESSION['id_admin'] = $result['id_admin'];
                         $_SESSION['fullname'] = $result['fullname'];
                         $_SESSION['email'] = $result['email'];
+                        $_SESSION['super'] = $result['super'];
 
                         header('Location: ../core/'); //refresh page
                         die;
