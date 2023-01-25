@@ -81,7 +81,7 @@ $TotalArticles = count($AllArticles);
                 </div> -->
             </div>
             <div class="row my-4">
-                <div class="col-12 col-xl-12 mb-4 mb-lg-0">
+                <div class="col-12 col-xl-12 mb-2 mb-lg-0">
                     <div class="card">
                         <h5 class="card-header">Recent Articles</h5>
                         <div class="card-body">
@@ -116,7 +116,7 @@ $TotalArticles = count($AllArticles);
                                                             echo $category['name'];
                                                         }
                                                     }  ?></td>
-                                                <td id="ArticleAdmin<?= $article['id_article']; ?>">
+                                                <td id="ArticleAdmin<?= $article['id_article']; ?>" style="text-transform: capitalize !important;">
                                                     <?php foreach ($AllUsers as $user) {
                                                         if ($article['id_admin'] == $user['id_admin']) {
                                                             echo $user['fullname'];
@@ -134,7 +134,7 @@ $TotalArticles = count($AllArticles);
                 </div>
             </div>
             <div class="row">
-                <div class="col-8 col-xl-8 col-md-12 mb-4 mb-lg-0">
+                <div class="col-12 col-lg-8 col-md-12 col-xm-12 mb-4 mb-lg-0">
                     <div class="card">
                         <h5 class="card-header">Recent Admins</h5>
                         <div class="card-body">
@@ -151,7 +151,7 @@ $TotalArticles = count($AllArticles);
                                         <?php foreach ($FourUsers as $user) { ?>
                                             <tr>
                                                 <th scope="row"><?= $user['id_admin']; ?></th>
-                                                <td><?= $user['fullname']; ?></td>
+                                                <td style="text-transform: capitalize !important;"><?= $user['fullname']; ?></td>
                                                 <td><?= $user['email']; ?></td>
 
                                             </tr>
@@ -159,11 +159,11 @@ $TotalArticles = count($AllArticles);
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="allcategories.php" class="btn btn-block col-12 btn-dark">View all</a>
+                            <!-- <a href="allcategories.php" class="btn btn-block col-12 btn-dark">View all</a> -->
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-xl-4 col-md-12 mb-4 mb-lg-0">
+                <div class="col-12 col-lg-4 col-md-12 col-xm-12 mb-4 mb-lg-0">
                     <div class="card">
                         <h5 class="card-header">Recent Categories</h5>
                         <div class="card-body">
