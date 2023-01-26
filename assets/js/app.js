@@ -5,7 +5,9 @@
 
 // Validation for sensitive inputs
 function validateName() {
-    if (document.getElementById('TitleInput').value == '' || !/^[a-z A-Z 0-9]{5,}$/.test(document.getElementById('TitleInput').value)) {
+    let Title = document.getElementById('TitleInput').value;
+    let TitleRegex = /^[a-z A-Z 0-9]{5,}$/;
+    if (Title == '' || !TitleRegex.test(Title)) {
         document.getElementById('TitleInput').setAttribute('style', 'color:red; border: 1px red solid ;');
 
         document.getElementById('ValidateTitle').innerText = 'Veuillez entrer un nom valide ! verifiez que le nom contient au minimum 5 caractéres et sans caractéres speciaux!!';
@@ -16,7 +18,9 @@ function validateName() {
     }
 }
 function validateDescription() {
-    if (document.getElementById('DescriptionInput').value == '' || !/^[a-z A-Z 0-9.:,]{5,}$/.test(document.getElementById('DescriptionInput').value)) {
+    let Description = document.getElementById('DescriptionInput').value;
+    let DescriptionRegex = /^[a-z A-Z 0-9.:,]{5,}$/;
+    if (Description == '' || !DescriptionRegex.test(Description)) {
         document.getElementById('DescriptionInput').setAttribute('style', 'color:red; border: 1px red solid ;');
         document.getElementById('ValidateDescription').innerText = 'Veuillez entrer une description valide ! verifiez que la description contient au minimum 5 caractéres!!';
         document.getElementById('ValidateDescription').setAttribute('style', 'color:red;font-size:13px;');
@@ -36,7 +40,7 @@ function validateSubject() {
         document.getElementById('ValidateSubject').innerText = '';
     }
 }
-function validatePicture() {
+/* function validatePicture() {
     if (document.getElementById('PictureFileField').classList.contains('has-preview') != false) {
         document.getElementById('ValidatePicture').setAttribute('class', 'text-danger');
         document.getElementById('ValidatePicture').innerText = 'Veuillez choisr un fichier photo ! verifiez que la photo contient au maximum 10MB !!';
@@ -47,7 +51,7 @@ function validatePicture() {
         document.getElementById('PictureFileField').setAttribute('style', 'height:10rem; border-radius: 1em !important;background-color: #151521 !important;border-color:green;font-size:10px;');
     }
 }
-
+ */
 $('#saveArticle').click(function (e) {
     if (document.getElementById('PictureFileField').classList.contains('has-preview') == false) {
         e.preventDefault();
@@ -105,21 +109,18 @@ function validatePassword() {
         document.getElementById('ValidatePassword').innerText = '';
     }
 }
-var i = 0;
+
 function MultiForm() {
     var formInputs = document.getElementsByClassName('formul')[0];
     var plus = formInputs.cloneNode(true);
-    console.log(plus);
-
-    //plus.querySelector('.div-picture').querySelector('#PictureFileField').className = 'dropify-wrapper s';
     plus.querySelector('.div-picture').querySelector('#PictureFileField').remove();
     let input_file = document.createElement('input');
     input_file.setAttribute('type', 'file');
     input_file.setAttribute('name', 'picture[]');
-    plus.querySelector('.div-picture').querySelector('#div-pictureee').prepend(input_file);
+    plus.querySelector('.div-picture').querySelector('#picture-field').prepend(input_file);
     var form = document.getElementById('multii');
+    plus.prepend(document.createElement('hr'));
     form.appendChild(plus);
-    // document.getElementsByClassName('dropify').setAttribute('class', ' ');
 }
 
 // event listener for loginValidation
@@ -247,7 +248,6 @@ function DeleteArticle(id) {
 
 function GetCategory(id) {
     // initialiser Category form
-
     document.getElementById('saveCategory').style.display = 'none';
     document.getElementById('editButton').style.display = 'block';
 

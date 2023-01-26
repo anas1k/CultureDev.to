@@ -51,11 +51,15 @@ $AllUsers = $User->GetUsers();
                                         ?>
                                             <tr id="Admin<?= $admin['id_admin']; ?>">
                                                 <th scope="row"><?= $admin['id_admin']; ?></th>
-                                                <td id="AdminName<?= $admin['id_admin']; ?>"><?= $admin['fullname']; ?></td>
+                                                <td id="AdminName<?= $admin['id_admin']; ?>" style="text-transform: capitalize !important;"><?= $admin['fullname']; ?></td>
                                                 <td id="AdminEmail<?= $admin['id_admin']; ?>"><?= $admin['email']; ?></td>
-                                                <td id="AdminSuper<?= $admin['id_admin']; ?>"><?= $admin['super']; ?></td>
+                                                <td id="AdminSuper<?= $admin['id_admin']; ?>">
+                                                    <?php if ($admin['super'] === '1') {
+                                                        echo '<i class="fas fa-check"></i>';
+                                                    } else {
+                                                        echo '<i class="fas fa-times"></i>';
+                                                    } ?></td>
                                                 <!-- <td>
-                                                    <a href="#" onclick="GetAdmin('<?= $admin['id_admin']; ?>')" class="btn btn-sm btn-warning">Edit</a>
                                                     <a href="#" onclick="DeleteAdmin('<?= $admin['id_admin']; ?>')" class="btn btn-sm btn-danger">Delete</a>
                                                 </td> -->
                                             </tr>

@@ -143,7 +143,7 @@ $AllUsers = $User->GetUsers();
                                         <input type="hidden" id="IdAdmin" name="id_admin" />
                                         <div class="mb-0 div-picture">
                                             <label class="col-form-label">Picture</label>
-                                            <div id="div-pictureee">
+                                            <div id="picture-field">
                                                 <input id="PictureInput" class="dropify" data-max-file-size-preview="10M" data-height="100%" type="file" name="picture[]" />
                                                 <div id="ValidatePicture" class="text-success"></div>
                                             </div>
@@ -153,6 +153,7 @@ $AllUsers = $User->GetUsers();
                                             <textarea class="form-control" id="DescriptionInput" rows="8" name="description[]" oninput="validateDescription()" required></textarea>
                                             <span id="ValidateDescription"></span>
                                         </div>
+                                        <!-- <hr /> -->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
