@@ -1,9 +1,16 @@
 <?php
 
 require_once('../controller/categories.php');
-// include('../controller/users.php');
+
 $Category = new CategoryController();
-$AllCategories = $Category->GetCategory();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['searchCategory'])) {
+
+    $AllCategories = $Category->FindCategory();
+} else {
+
+    $AllCategories = $Category->GetCategory();
+}
 $Category->AddCategory();
 $Category->EditCategory();
 $Category->DeleteCategory();

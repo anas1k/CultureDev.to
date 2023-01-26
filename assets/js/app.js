@@ -86,8 +86,8 @@ $('#updateArticle').click(function (ee) {
 });
 
 function validateEmail() {
-    var email = document.getElementById('EmailInput').value;
-    var emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+    let email = document.getElementById('EmailInput').value;
+    let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
     if (email == '' || !emailRegex.test(email)) {
         document.getElementById('EmailInput').setAttribute('style', 'color: red;border: 1px red solid;');
         document.getElementById('ValidateEmail').innerText = "Veuillez entrer un email valide ! Verifiez que l'email sans caractéres speciaux!!";

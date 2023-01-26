@@ -71,4 +71,17 @@ class CategoryController extends Crud
             }
         }
     }
+
+    public function FindCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_REQUEST['searchCategory'])) {
+                extract($_POST);
+                $sql = "WHERE name LIKE '$search%'";
+                $res = parent::select('category', '*', $sql);
+                return $res;
+                die;
+            }
+        }
+    }
 }
