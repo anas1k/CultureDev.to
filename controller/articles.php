@@ -35,11 +35,9 @@ class ArticlesController extends Crud
                             $fileSize[$i] = $_FILES['picture']['size'][$i];
                             $fileError[$i] = $_FILES['picture']['error'][$i];
 
-
                             $fileExt[$i] = explode('.', $fileName[$i]);
                             $fileActualExt[$i] = strtolower(end($fileExt[$i]));
                             $allowed = array('jpg', 'jpeg', 'png', 'jfif');
-
 
                             if (in_array($fileActualExt[$i], $allowed)) {
                                 if ($fileError[$i] == 0) {
@@ -150,9 +148,6 @@ class ArticlesController extends Crud
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_REQUEST['updateArticleForm'])) {
                 extract($_POST);
-                /* print_r($_POST);
-                print_r($_FILES);
-                die; */
                 if (empty($title[0]) || empty($id_category[0]) || empty($subject[0])  || empty($description[0])) {
                     $_SESSION['icon'] = "error";
                     $_SESSION['message'] = "Veuillez remplir tous les champs";
